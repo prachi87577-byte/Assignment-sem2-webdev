@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smart event dashboard</title>
+    <link rel="stylesheet" href="style.css"  >
+</head>
+<body><h1>Smart Event dashboard</h1>
+    <div id="main-container">
+    <div id="min-event-container">
+        <h2>Add New Event</h2>
+        <form action="">
+            <labal for="eventtittle">Event tittle</labal>
+            <input type="text" name="" id="eventtittle"><br><br>
+
+            <labal for="eventdate">Event date</labal>
+            <input type="date" name="" id="eventdate"><br><br>
+
+            <labal for="eventcategory">Event category</labal>
+            <select type="" name="" id="eventcategory">
+                <option value="conference">conference</option>
+                <option value="workshop">workshop</option>
+                <option value="meeting">meeting</option>
+                <option value="webing">webing</option>
+                    <option value="social">social</option>
+                    </select><br><br>
+
+                <labal for="eventdescription">Event description</labal>
+                <textarea  name="" id="eventdescription"></textarea><br><br>
+                    <button type="submit">AddEvent</button>
+
+
+    </form>
+    </div>
+
+    <div id="buttondiv">
+        <h3>My Event</h3>
+        <div>
+            <button id="clearbtn">clear all eevent</button><br><br>
+            <button id="additionbtn">add sample eevent</button>
+        </div>
+        <div id="all-events-conttainer">
+            no event yet
+        </div>
+    </div>
+    </div>
+     <div id="dommanupulation">
+        <h2>DOM Manupulation Demo</h2>
+        <input type="text" id="inputfield" placeholder="type something" disabled>
+    </div>
+    <script>
+        let form=document.querySelector("form")
+        let eventtittle=document.querySelector("#eventtittle")
+        let eventdate=document.querySelector('#eventdate')
+        let eventcategory=document.querySelector("#eventcategory")
+        let eventdescription=document.querySelector("#eventdescription")
+        let allEventcontainer =document.querySelector('#all-events-conttainer')
+        let clearbtn=document.querySelector("#clearbtn")
+        let additionbtn=document.querySelector("#additionbtn")
+        let inputfield=document.querySelector("#inputfield")
+        
+
+        function addeventfunction(event){
+            event.preventDefault()
+            let card =document.createElement("div")
+            card.classList.add("card");
+
+            card.innerHTML=`<button>X</button>
+                        <h4>${eventtittle.value}</h4>
+                            <span>${eventdate.value}</span>
+                            <span>${eventcategory.value}</span>
+                            <p>${eventdescription.value}</p>`
+           
+           
+                        
+            allEventcontainer.append(card)
+            form.reset();
+
+            
+        }
+        function clearbtnfunction(){
+            allEventcontainer.innerHTML =" <h4> No Event Yet</h4>"
+
+        }
+        form.addEventListener('submit',addeventfunction)
+        clearbtn.addEventListener('click',clearbtnfunction)
+        inputfield.addEventListener('click',cardDeletefunction)
+        
+    </script>
+    
+</body>
+</html>
